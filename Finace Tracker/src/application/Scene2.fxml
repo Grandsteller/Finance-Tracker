@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Scene2Controller">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="194.0" layoutY="92.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="580.0" prefWidth="363.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="9.0" layoutY="10.0" prefHeight="628.0" prefWidth="354.0" stylesheets="@cascade.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                           <styleClass>
+                              <String fx:value="border" />
+                              <String fx:value="White-form" />
+                           </styleClass>
+                           <children>
+                              <Button layoutX="15.0" layoutY="272.0" mnemonicParsing="false" onAction="#add" prefHeight="29.0" prefWidth="156.0" styleClass="btn" stylesheets="@cascade.css" text="Add" textFill="#f8f5f5" />
+                              <Button layoutX="16.0" layoutY="306.0" mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="155.0" styleClass="btn" stylesheets="@cascade.css" text="Update" textFill="WHITE" />
+                              <PieChart fx:id="piechart" layoutX="7.0" layoutY="379.0" prefHeight="249.0" prefWidth="343.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="378.0" />
+                              <Button layoutX="190.0" layoutY="272.0" mnemonicParsing="false" onAction="#delete" prefHeight="29.0" prefWidth="152.0" styleClass="btn" stylesheets="@cascade.css" text="Delete" textFill="#f8f5f5" />
+                              <Button layoutX="191.0" layoutY="306.0" mnemonicParsing="false" onAction="#clears" prefHeight="30.0" prefWidth="151.0" styleClass="btn" stylesheets="@cascade.css" text="Clear" textFill="#f8f5f5" />
+                              <Label layoutX="15.0" layoutY="139.0" prefHeight="19.0" prefWidth="71.0" text="Reason :" textFill="#b91592">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font></Label>
+                              <TextField fx:id="Expense" layoutX="9.0" layoutY="116.0" prefHeight="25.0" prefWidth="343.0" promptText="Enter the expense" />
+                              <ComboBox fx:id="Category" layoutX="12.0" layoutY="237.0" prefHeight="25.0" prefWidth="337.0" promptText="Choose the category of Money spent" />
+                              <Label layoutX="6.0" layoutY="89.0" prefHeight="24.0" prefWidth="148.0" text="Expense:" textFill="#ee1212">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="reasonbox2" layoutX="82.0" layoutY="145.0" prefHeight="21.0" prefWidth="268.0" promptText="Reason of expense" />
+                              <Label layoutX="10.0" layoutY="179.0" prefHeight="22.0" prefWidth="148.0" text="Set Limit(Optional)" textFill="#ee1212">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="limitbox" layoutX="11.0" layoutY="206.0" prefHeight="25.0" prefWidth="339.0" promptText="set limit for your expense" />
+                              <TextField fx:id="Income" layoutX="5.0" layoutY="27.0" prefHeight="25.0" prefWidth="346.0" promptText="Enter income amout" />
+                              <Label layoutX="10.0" layoutY="1.0" prefHeight="24.0" prefWidth="148.0" text="Income:" textFill="#ee1212">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="9.0" layoutY="52.0" prefHeight="27.0" prefWidth="71.0" text="Reason :" textFill="#b91592">
+                                 <font>
+                                    <Font name="System Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="reasonbox1" layoutX="80.0" layoutY="57.0" prefHeight="25.0" prefWidth="271.0" promptText="Reason of Income" />
+                              <Button layoutX="16.0" layoutY="343.0" mnemonicParsing="false" onAction="#clear" prefHeight="30.0" prefWidth="327.0" styleClass="btn" stylesheets="@cascade.css" text="Clear Data" textFill="#f8f5f5" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane minWidth="-Infinity" prefHeight="652.0" prefWidth="869.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="21.0" layoutY="9.0" prefHeight="633.0" prefWidth="895.0" stylesheets="@cascade.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="9.0">
+                           <styleClass>
+                              <String fx:value="border" />
+                              <String fx:value="White-form" />
+                           </styleClass>
+                           <children>
+                              <TableView fx:id="Tview" layoutX="12.0" layoutY="8.0" prefHeight="613.0" prefWidth="883.0" stylesheets="@cascade.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0">
+                                <columns>
+                                  <TableColumn fx:id="income" prefWidth="89.0" text="Income" />
+                                    <TableColumn fx:id="rsn1" prefWidth="123.0" text="IncomeReason" />
+                                  <TableColumn fx:id="expense" prefWidth="101.0" text="Expense" />
+                                    <TableColumn fx:id="rsn2" prefWidth="127.0" text="ExpenseReason" />
+                                    <TableColumn fx:id="cat" prefWidth="117.0" text="Category" />
+                                    <TableColumn fx:id="dt" minWidth="0.0" prefWidth="96.0" text="Date" />
+                                    <TableColumn fx:id="Total_income" minWidth="0.0" prefWidth="105.0" text="Total Income" />
+                                    <TableColumn fx:id="Total_expense" minWidth="0.0" prefWidth="125.0" text="Total expense" />
+                                    <TableColumn fx:id="Total_expense1" minWidth="0.0" prefWidth="118.0" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <Separator layoutX="9.0" layoutY="-7.0" orientation="VERTICAL" prefHeight="659.0" prefWidth="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
