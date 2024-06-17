@@ -18,7 +18,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -27,8 +31,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class Scene2Controller implements Initializable{
+	
+	 private static int lbox =0;
+	
       @FXML
       private PieChart piechart;
       @FXML
@@ -54,10 +62,7 @@ public class Scene2Controller implements Initializable{
        @FXML
        private TextField Income,reasonbox1,Expense,reasonbox2,limitbox; 
        
-     
        private static Alert alert;
-      
-       
        
        ObservableList<Details> Tablelist =FXCollections.observableArrayList();
        ObservableList<PieChart.Data> pielist =FXCollections.observableArrayList();
@@ -73,6 +78,8 @@ public class Scene2Controller implements Initializable{
     	    pielist.add(new PieChart.Data("Others",0));
 	        piechart.getData().addAll(pielist);
 	        piechart.setTitle("Budget Details");
+	        
+	       //COMBPBOX     
 	        Category.getItems().addAll(arr);
 
 	income.setCellValueFactory(new PropertyValueFactory<Details,Long>("income"));
@@ -81,7 +88,6 @@ public class Scene2Controller implements Initializable{
 	rsn2.setCellValueFactory(new PropertyValueFactory<Details,String>("expensereason"));
 	cat.setCellValueFactory(new PropertyValueFactory<Details,String>("category"));
 	dt.setCellValueFactory(new PropertyValueFactory<Details,Date>("date"));
-    
     Total_income.setCellValueFactory(new PropertyValueFactory<Details,Long>("Tincome"));
     Total_expense.setCellValueFactory(new PropertyValueFactory<Details,Long>("Texpense"));
     
@@ -114,9 +120,16 @@ public class Scene2Controller implements Initializable{
     
     public void add(){
   try {
+	  
+  if(!limitbox.getText().equals("")) {
+	 lbox=Integer.parseInt(limitbox.getText()); 
+  }
+  
+    
   if(Income.getText().isEmpty() && Expense.getText().isEmpty()) alertError();
   else if ((!Income.getText().isEmpty()  && reasonbox1.getText().equals("")) ||(Income.getText().isEmpty()   && !reasonbox1.getText().equals("")) )alertError(); 
   else if ((!Expense.getText().isEmpty() && reasonbox2.getText().equals("")) || (Expense.getText().isEmpty()  &&  !reasonbox2.getText().equals("")))alertError(); 
+  
   else if ((!Expense.getText().isEmpty() && !reasonbox2.getText().equals("") && Category.getValue() ==null) || (!Expense.getText().isEmpty()  &&  !reasonbox2.getText().equals("")&& Category.getValue() ==null))alertError();
   else if(!Income.getText().equals("") && Expense.getText().equals("") && Category.getValue() !=null) {
 	  alertInfo();
@@ -127,8 +140,33 @@ public class Scene2Controller implements Initializable{
 
     if(Income.getText().equals(""))  Income.setText("0");
    
-   if(Expense.getText().equals(""))    Expense.setText("0");
+    if(Expense.getText().equals(""))    Expense.setText("0");
    
+   if(JDBCconct.Totalexpense > lbox) {
+		  alert = new Alert(AlertType.ERROR);	
+	      alert.setTitle("Info Message");
+	      alert.setHeaderText(null);
+	      alert.setContentText("Your are Exceeding your Limit ");
+	      alert.showAndWait();
+	      JDBCconct.adddata(Long.parseLong(Income.getText()),
+		          reasonbox1.getText(),
+		          Long.parseLong(Expense.getText()),
+ 		          reasonbox2.getText(),
+		          Category.getValue(),
+		          Tablelist,
+		          Tview
+		           );
+if(Category.getValue()!=null) {
+  updatepiechart(pielist,Category.getValue());
+  Category.setValue(null);
+  Category.setPromptText("hi");
+
+}
+
+clears();
+
+   }
+   else   
 	 
      JDBCconct.adddata(Long.parseLong(Income.getText()),
 				          reasonbox1.getText(),
@@ -284,7 +322,6 @@ public class Scene2Controller implements Initializable{
       alert.showAndWait();
 }  
 	  
-  
   public void clears() {
 	  Income.setText("");
       Expense.setText("");
@@ -293,6 +330,21 @@ public class Scene2Controller implements Initializable{
       Category.setValue(null);
   }
 
+  public void Logout(ActionEvent event) {
+	  try {
+	  Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+	   Scene scene = new Scene(root);
+	   Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+	   stage.setScene(scene);
+	   stage.show();
+  
+  }
+	  catch(Exception e) {
+		  e.printStackTrace();
+	  }
+  }
+  
+  
     }
 
 
